@@ -1,0 +1,139 @@
+﻿@model proyectoIPC.Controllers.Juego
+@{
+    ViewData["Title"] = "Juego";
+    Layout = "~/Views/Shared/MenuUsuario.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <table class="table table-bordered text-center" border="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <th><div class="boton bg-light"></div></th>
+                        <th class="table-warning">A</th>
+                        <th class="table-warning">B</th>
+                        <th class="table-warning">C</th>
+                        <th class="table-warning">D</th>
+                        <th class="table-warning">E</th>
+                        <th class="table-warning">F</th>
+                        <th class="table-warning">G</th>
+                        <th class="table-warning">H</th>
+                        <th><div class="boton bg-light">&nbsp</div></th>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>1</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="D1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="E1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G1" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H1" onclick="zoom(this)"></div></td>
+                        <td class="table-warning"><strong>1</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>2</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A2" onclick="zoom(this)"></div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="D2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="E2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H2" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>2</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>3</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="D3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="E3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H3" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>3</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>4</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="C4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-light" id="D4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-dark" id="E4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H4" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>4</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>5</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-dark" id="D5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-light" id="E5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="F5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H5" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>5</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>6</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="D6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="E6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H6" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>6</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>7</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="D7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="E7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H7" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>7</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="table-warning"><strong>8</strong></td>
+                        <td class="bg-success"><div class="boton bg-success" id="A8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="B8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="C8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="D8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="E8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="F8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="G8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="bg-success"><div class="boton bg-success" id="H8" onclick="zoom(this)">&nbsp</div></td>
+                        <td class="table-warning"><strong>8</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="table-warning"><strong>A</strong></td>
+                        <td class="table-warning"><strong>B</strong></td>
+                        <td class="table-warning"><strong>C</strong></td>
+                        <td class="table-warning"><strong>D</strong></td>
+                        <td class="table-warning"><strong>E</strong></td>
+                        <td class="table-warning"><strong>F</strong></td>
+                        <td class="table-warning"><strong>G</strong></td>
+                        <td class="table-warning"><strong>H</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+

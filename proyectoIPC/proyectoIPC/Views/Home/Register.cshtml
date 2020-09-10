@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Registrarse";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <div id="alerta" style="display: none">
+                        <div class="alert alert-danger" role="alert">
+                            ¡Rellena todos los campos por favor!
+                        </div>
+                    </div>
+                    <h5 class="card-title text-center">Registrate</h5>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        <input type="text" id="txtNombre" class="form-control" name="nombre" placeholder="Nombre">
+                        <input type="text" id="txtApellido" class="form-control" name="apellido" placeholder="Apellido">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                        <input type="text" id="txtUser" class="form-control" name="user" placeholder="Usuario">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                        <input type="password" id="txtPass" class="form-control" name="pass" placeholder="Contraseña">
+
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                        <input type="text" id="txtPais" class="form-control" name="pais" placeholder="Pais">
+
+
+                    </div>
+                    <br />
+                    <label>Fecha de Nacimiento:</label>
+                    <div class="input-group">
+                        <input class="form-control" type="date" id="txtFecha" name="fecha">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                        <input type="text" id="txtCorreo" class="form-control" name="correo" placeholder="Correo">
+
+                    </div>
+                    <br />
+                    <button class="btn btn-lg btn-outline-primary btn-block" onclick="registrar()"><i class="fa fa-sign-in"></i> Registrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

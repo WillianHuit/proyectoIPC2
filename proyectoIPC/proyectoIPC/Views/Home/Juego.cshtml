@@ -1,0 +1,83 @@
+﻿@model proyectoIPC.Controllers.Juego
+@{
+    ViewData["Title"] = "Juego";
+    Layout = "~/Views/Shared/MenuUsuario.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6">
+            <table class="table table-bordered text-center" border="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <th><div class="boton bg-light"></div></th>
+                        <th class="table-warning">A</th>
+                        <th class="table-warning">B</th>
+                        <th class="table-warning">C</th>
+                        <th class="table-warning">D</th>
+                        <th class="table-warning">E</th>
+                        <th class="table-warning">F</th>
+                        <th class="table-warning">G</th>
+                        <th class="table-warning">H</th>
+                        <th><div class="boton bg-light">&nbsp</div></th>
+                    </tr>
+
+        @{
+            int contador = 1;
+            int contador2 = 1;
+            string id = "";
+            for (int i = 0; i < 8; i++)
+            {
+                            <tr>
+                                <td class="table-warning"><strong>@contador</strong></td>
+                                @for (int j = 0; j < 8; j++)
+                                {
+                                    id = contador + "" + contador2;
+                                    if (Model.tablero[i, j] == 0)
+                                    {
+                                        <td class="bg-success"><div class="boton bg-success" id="@id" onclick="zoom(this)"></div></td>
+                                    }
+                                    else if (Model.tablero[i, j] == 1)
+                                    {
+                                        <td class="bg-success"><div class="boton bg-dark" id="@id" onclick="zoom(this)"></div></td>
+                                    }
+                                    else if (Model.tablero[i, j] == 2)
+                                    {
+                                        <td class="bg-success"><div class="boton bg-light" id="@id" onclick="zoom(this)"></div></td>
+                                    }
+                                    else { 
+                                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="@id" onclick="zoom(this)"></div></td>
+                                    }
+
+                                    contador2++;
+
+                                }
+                                <td class="table-warning"><strong>@contador</strong></td>
+                                @{contador++;
+                                }
+                            </tr>
+                    }
+                    }
+                           
+                            <tr>
+                                <td></td>
+                                <td class="table-warning"><strong>A</strong></td>
+                                <td class="table-warning"><strong>B</strong></td>
+                                <td class="table-warning"><strong>C</strong></td>
+                                <td class="table-warning"><strong>D</strong></td>
+                                <td class="table-warning"><strong>E</strong></td>
+                                <td class="table-warning"><strong>F</strong></td>
+                                <td class="table-warning"><strong>G</strong></td>
+                                <td class="table-warning"><strong>H</strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
