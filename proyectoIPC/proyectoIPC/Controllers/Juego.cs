@@ -22,8 +22,10 @@ namespace proyectoIPC.Controllers
                 }
             }
             int fila, columna, color = 0;
+            
+            string cadena = "<tablero><ficha><color>blanco</color><columna>D</columna><fila>4</fila></ficha><ficha><color>negro</color><columna>E</columna><fila>4</fila></ficha><ficha><color>blanco</color><columna>E</columna><fila>5</fila></ficha><ficha><color>negro</color><columna>D</columna><fila>5</fila></ficha><ficha><color>gris</color><columna>C</columna><fila>4</fila></ficha><ficha><color>gris</color><columna>F</columna><fila>5</fila></ficha><ficha><color>gris</color><columna>E</columna><fila>6</fila></ficha><ficha><color>gris</color><columna>D</columna><fila>3</fila></ficha><siguienteTiro><color> negro </color></siguienteTiro></tablero>";
             XmlDocument xml = new XmlDocument();
-            xml.Load("C:\\Users\\Willian Huit\\Desktop\\carga.xml");
+            xml.LoadXml(cadena);
             /*xml.LoadXml("C:/Users/Willian Huit/Desktop/carga.xml");*/
             XmlNodeList xnList = xml.SelectNodes("/tablero/ficha");
 
@@ -36,10 +38,40 @@ namespace proyectoIPC.Controllers
             }
             return tablero;
         }
+        public int[,] tableroReglas() {
+            return null;
+        }
         private int obtenerFila(string fila) {
             int retornar = Int32.Parse(fila) - 1;
             return retornar;
         }
+
+        internal int[,] obtenerTablero(string archivoXML)
+        {
+            int[,] tablero = new int[8, 8];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    tablero[i, j] = 0;
+                }
+            }
+            int fila, columna, color = 0;
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(archivoXML);
+            /*xml.LoadXml("C:/Users/Willian Huit/Desktop/carga.xml");*/
+            XmlNodeList xnList = xml.SelectNodes("/tablero/ficha");
+
+            foreach (XmlNode xn in xnList)
+            {
+                fila = obtenerFila(xn["fila"].InnerText);
+                columna = obtenerColumna(xn["columna"].InnerText);
+                color = obtenerColor(xn["color"].InnerText);
+                tablero[fila, columna] = color;
+            }
+            return tablero;
+        }
+        
         private int obtenerColumna(string columna)
         {
             int retornar = 0;
@@ -75,8 +107,12 @@ namespace proyectoIPC.Controllers
             {
                 retornar = 1;
             }
-            else {
+            else if (color == "blanco")
+            {
                 retornar = 2;
+            }
+            else {
+                retornar = 3;
             }
             return retornar;
         }

@@ -34,6 +34,7 @@ namespace proyectoIPC.Controllers
         public IActionResult Inicio() {
             return View();
         }
+        [HttpGet]
         public IActionResult Juego()
         {
            
@@ -41,6 +42,16 @@ namespace proyectoIPC.Controllers
             /*tablero[2,4]= 3;*/
             Juego jg = new Juego();
             jg.tablero = jg.obtenerTablero();
+            return View(jg);
+        }
+        [HttpPost]
+        public IActionResult Juego(string archivoXML)
+        {
+
+            /*Filas,Columnas*/
+            /*tablero[2,4]= 3;*/
+            Juego jg = new Juego();
+            jg.tablero = jg.obtenerTablero(archivoXML);
             return View(jg);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

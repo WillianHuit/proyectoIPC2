@@ -51,6 +51,99 @@ namespace proyectoIPC.Controllers
 
             return Json(new { Status = false, message = "clave incorrecto" });
         }
+        [HttpPost]
+        public IActionResult generarXML(string cadena, int turno)
+        {
+            string[] lista = cadena.Split(",");
+            //turno=1 es negro, turno = 2 es blanco
+            //0 nada, 1 negro, 2 blanco, 3 gris(no se guarda)
+            int turnoTemp = 1;
+            int contador = 0;
+            int[,] tableroPrueba = new int[8, 8];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    tableroPrueba[i, j] = Int32.Parse(lista[contador]);
+                    contador++;
+                }
+            }
+            //Comentar lo de arriba una vez terminada la prueba -------------------------------------
+            string archivoXML = "<tablero>";
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    //Cambiar tableroPrueba -> tablero
+                    if (tableroPrueba[i, j] != 0)
+                    {
+                        archivoXML = archivoXML + "<ficha>";
+                        archivoXML = archivoXML + "  <color>" + obtenerColorStr(tableroPrueba[i, j]) + "</color>\n\r";
+                        archivoXML = archivoXML + "  <columna>" + obtenerColumnaStr(j) + "</columna>\n\r";
+                        archivoXML = archivoXML + "  <fila>" + obtenerFilaStr(i) + "</fila>\n\r";
+                        archivoXML = archivoXML + "</ficha>";
+                    }
+                }
+            }
+            archivoXML = archivoXML + "</tablero>";
+            return Json(new { textoXML = archivoXML });
+        }
+
+        private int obtenerFilaStr(int i)
+        {
+            return i + 1;
+        }
+
+        private string obtenerColumnaStr(int v)
+        {
+            string columna = "";
+            switch (v)
+            {
+                case 0:
+                    columna = "A";
+                    break;
+                case 1:
+                    columna = "B";
+                    break;
+                case 2:
+                    columna = "C";
+                    break;
+                case 3:
+                    columna = "D";
+                    break;
+                case 4:
+                    columna = "E";
+                    break;
+                case 5:
+                    columna = "F";
+                    break;
+                case 6:
+                    columna = "G";
+                    break;
+                case 7:
+                    columna = "H";
+                    break;
+
+            }
+            return columna;
+        }
+
+        private string obtenerColorStr(int v)
+        {
+            string color = "";
+            if (v == 1)
+            {
+                color = "negro";
+            }
+            else if (v == 2)
+            {
+                color = "blanco";
+            }
+
+            return color;
+        }
+
         public IActionResult Index()
         {
             return View();
