@@ -10,7 +10,6 @@ namespace proyectoIPC.Controllers
 {
     public class Usuarios : Controller
     {
-
         public othelloDataBaseContext _context;
         public Usuarios(othelloDataBaseContext master) {
             this._context = master;
@@ -22,7 +21,9 @@ namespace proyectoIPC.Controllers
             {
                 if (usuario.Where(s=> s.Usr == nombreUsuario && s.Pass == claveUsuario).Any())
                 {
-                    return Json(new { status = true, message = "Bienvenido" });
+                    var idUsuario = _context.Usuario.Where(u => u.Usr == nombreUsuario && u.Pass == claveUsuario).Select(u => u.Id);
+
+                    return Json(new { status = true, message = "Bienvenido", idUsr = idUsuario});
                 }
                 else {
                     return Json(new { status = false, message = "clave incorrecto" });

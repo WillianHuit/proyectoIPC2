@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Othello</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/botones.css" />
@@ -34,11 +35,7 @@
             </nav>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @RenderBody()
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -50,6 +47,11 @@
     <script src="~/js/FileSaver.js" asp-append-version="true"></script>
     <script src="~/js/login.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/logicaJuego.js" asp-append-version="true"></script>
+    <script src="~/js/validarMovimiento.js" asp-append-version="true"></script>
+    <script src="~/js/contadorJuego.js" asp-append-version="true"></script>
+    <script src="~/js/jugadorMaquina.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

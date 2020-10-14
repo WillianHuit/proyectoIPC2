@@ -3,13 +3,28 @@
     ViewData["Title"] = "Juego";
     Layout = "~/Views/Shared/MenuUsuario.cshtml";
 }
-
-<div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            
+            <div id="info" style="display: none;">
+                Información<br>
+                <input type="text" name="turno" value="@Model.siguiente" id="turno">
+                <input type="text" name="onlyGame" value="@Model.jugadorIA" id="onlyGame">
+                <input type="text" name="turnoIA" value="@Model.turnoIA" id="turnoIA">
+                <input type="text" name="idJugadorA" id="idJugadorA" value="@Model.idJugadorA">
+                <input type="text" name="idJugadorB" id="idJugadorB" value="@Model.idJugadorB">
+
+            </div>
+            <div id="MostrarJugador">
+                <center>
+                    <h4>Siguiente Ficha:</h4>
+                    <div class="boton bg-success" id="fichaTurno"></div>
+                </center>
+                <br>
+                <br>
+
+            </div>
         </div>
-        <div class="col-7">
+        <div class="col-5">
             <table class="table table-bordered text-center" border="0" cellspacing="0">
                 <tbody>
                     <tr>
@@ -25,14 +40,14 @@
                         <th><div class="boton bg-light">&nbsp</div></th>
                     </tr>
 
-        @{
-            int contador = 1;
-            int contador2 = 1;
-            string id = "";
-            for (int i = 0; i < 8; i++)
+                    @{
+                        int contador = 1;
+                        int contador2 = 1;
+                        string id = "";
+                        for (int i = 0; i < 8; i++)
 
-            {
-                contador2 = 1;
+                        {
+                            contador2 = 1;
                             <tr>
                                 <td class="table-warning"><strong>@contador</strong></td>
                                 @for (int j = 0; j < 8; j++)
@@ -50,7 +65,8 @@
                                     {
                                         <td class="bg-success"><div class="boton bg-light" id="@id" onclick="zoom(this)"></div></td>
                                     }
-                                    else { 
+                                    else
+                                    {
                                         <td class="bg-success"><div class="btn btn-outline-secondary boton" id="@id" onclick="zoom(this)"></div></td>
                                     }
 
@@ -61,29 +77,55 @@
                                 @{contador++;
                                 }
                             </tr>
+                        }
                     }
-                    }
-                           
-                            <tr>
-                                <td></td>
-                                <td class="table-warning"><strong>A</strong></td>
-                                <td class="table-warning"><strong>B</strong></td>
-                                <td class="table-warning"><strong>C</strong></td>
-                                <td class="table-warning"><strong>D</strong></td>
-                                <td class="table-warning"><strong>E</strong></td>
-                                <td class="table-warning"><strong>F</strong></td>
-                                <td class="table-warning"><strong>G</strong></td>
-                                <td class="table-warning"><strong>H</strong></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                </table>
+
+                    <tr>
+                        <td></td>
+                        <td class="table-warning"><strong>A</strong></td>
+                        <td class="table-warning"><strong>B</strong></td>
+                        <td class="table-warning"><strong>C</strong></td>
+                        <td class="table-warning"><strong>D</strong></td>
+                        <td class="table-warning"><strong>E</strong></td>
+                        <td class="table-warning"><strong>F</strong></td>
+                        <td class="table-warning"><strong>G</strong></td>
+                        <td class="table-warning"><strong>H</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-2">
-            <h2>Configuración</h2>
-            <button class="btn btn-info" onclick="guardarPartida()">Guardar Partida</button>
+        <div class="col-1">
 
         </div>
+        <div class="col-2">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Jugador</th>
+                        <th scope="col">Ficha</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><label id="JugadorA">@Model.jugadorA</label></th>
+                        <td> <div class="boton bg-dark" id="fichaJugadorA"></div></td>
+                        <th><label id="JugadorACount">55</label></th>
+                    </tr>
+                    <tr>
+                        <th><label id="JugadorB">@Model.jugadorB</label></th>
+                        <td> <div class="boton btn btn-outline-dark" id="fichaJugadorB"></div></td>
+                        <th><label id="JugadorBCount">55</label></th>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button class="btn btn-info" onclick="guardarPartida()">Guardar Partida</button>
+
+
+        </div>
+
     </div>
-</div>
+
 

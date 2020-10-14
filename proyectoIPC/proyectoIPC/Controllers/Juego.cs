@@ -11,6 +11,13 @@ namespace proyectoIPC.Controllers
         public int[,] tablero { get; set; }
 
         public string siguiente { get; set; }
+        public string jugadorIA { get; set; }
+        public string turnoIA { get; set; }
+        public string jugadorA { get; set; }
+        public string jugadorB { get; set; }
+        public int idJugadorA { get; set; }
+        public int idJugadorB { get; set; }
+
         public int[,] obtenerTablero()
         {
             int[,] tablero = new int[8, 8];
@@ -23,7 +30,7 @@ namespace proyectoIPC.Controllers
             }
             int fila, columna, color = 0;
             
-            string cadena = "<tablero><ficha><color>blanco</color><columna>D</columna><fila>4</fila></ficha><ficha><color>negro</color><columna>E</columna><fila>4</fila></ficha><ficha><color>blanco</color><columna>E</columna><fila>5</fila></ficha><ficha><color>negro</color><columna>D</columna><fila>5</fila></ficha><ficha><color>gris</color><columna>C</columna><fila>4</fila></ficha><ficha><color>gris</color><columna>F</columna><fila>5</fila></ficha><ficha><color>gris</color><columna>E</columna><fila>6</fila></ficha><ficha><color>gris</color><columna>D</columna><fila>3</fila></ficha><siguienteTiro><color> negro </color></siguienteTiro></tablero>";
+            string cadena = "<tablero><ficha><color>blanco</color><columna>D</columna><fila>4</fila></ficha><ficha><color>negro</color><columna>E</columna><fila>4</fila></ficha><ficha><color>blanco</color><columna>E</columna><fila>5</fila></ficha><ficha><color>negro</color><columna>D</columna><fila>5</fila></ficha><siguienteTiro><color> negro </color></siguienteTiro></tablero>";
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(cadena);
             /*xml.LoadXml("C:/Users/Willian Huit/Desktop/carga.xml");*/
@@ -34,7 +41,9 @@ namespace proyectoIPC.Controllers
                 fila = obtenerFila(xn["fila"].InnerText);
                 columna = obtenerColumna(xn["columna"].InnerText);
                 color = obtenerColor(xn["color"].InnerText);
-                tablero[fila,columna]= color;
+                if (fila<8 && columna<8) {
+                    tablero[fila, columna] = color;
+                }
             }
             return tablero;
         }
@@ -46,6 +55,18 @@ namespace proyectoIPC.Controllers
             return retornar;
         }
 
+        public string obtenerColorTurno(string archivoXML) {
+            string turno = "";
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(archivoXML);
+            /*xml.LoadXml("C:/Users/Willian Huit/Desktop/carga.xml");*/
+            XmlNodeList xnList = xml.SelectNodes("/tablero/siguienteTiro");
+            foreach (XmlNode xn in xnList)
+            {
+                turno = xn["color"].InnerText;
+            }
+            return turno;
+        }
         internal int[,] obtenerTablero(string archivoXML)
         {
             int[,] tablero = new int[8, 8];
@@ -75,29 +96,40 @@ namespace proyectoIPC.Controllers
         private int obtenerColumna(string columna)
         {
             int retornar = 0;
-            if (columna =="A") {
+            if (columna == "A")
+            {
                 retornar = 0;
-            }else if (columna == "B")
+            }
+            else if (columna == "B")
             {
                 retornar = 1;
-            }else if (columna == "C")
+            }
+            else if (columna == "C")
             {
                 retornar = 2;
-            }else if (columna == "D")
+            }
+            else if (columna == "D")
             {
                 retornar = 3;
-            }else if (columna == "E")
+            }
+            else if (columna == "E")
             {
                 retornar = 4;
-            }else if (columna == "F")
+            }
+            else if (columna == "F")
             {
                 retornar = 5;
-            }else if (columna == "G")
+            }
+            else if (columna == "G")
             {
                 retornar = 6;
-            }else if (columna == "H")
+            }
+            else if (columna == "H")
             {
                 retornar = 7;
+            }
+            else {
+                retornar = 8;
             }
             return retornar;
         }

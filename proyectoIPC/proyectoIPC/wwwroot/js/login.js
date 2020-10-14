@@ -26,7 +26,10 @@ function Validate(usuario, clave) {
         },
         success: function (data) {
             if (data.status == true) {
+                localStorage.setItem("usuario", usuario);
+                localStorage.setItem("idUsuario", data.idUsr);
                 alert("Bienvenido");
+                
                 document.location.href = '/Home/Inicio';
             } else if (data.status == false) {
                 document.getElementById('alerta').style.display = 'block';

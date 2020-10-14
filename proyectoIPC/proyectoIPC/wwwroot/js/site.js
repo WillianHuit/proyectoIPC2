@@ -20,15 +20,225 @@ function leerArchivo(e) {
 document.getElementById('file')
     .addEventListener('change', leerArchivo, false);
 
+function jugadorJugador() {
+    var nombreUserSesion = localStorage.getItem("usuario");
+    var idUserSesion = localStorage.getItem("idUsuario");
+    var jugadorA = "";
+    var jugadorB = "";
+    var idJugadorA = -1;
+    var idJugadorB = -1;
+    swal({
+        title: "Escoge tu turno",
+        text: "¿Que ficha deseas usar?",
+        icon: "https://i.gifer.com/origin/14/14b9f4265321c8ed068339bb9708ebc5_w200.gif",
+        buttons: {
+            Si: {
+                text: "Negras",
+                value: "negro",
+            },
+            No: {
+                text: "Blancas",
+                value: "blanco",
+            },
+        },
+        dangerMode: true,
+    })
+        .then((retornado) => {
+            if (retornado == "negro") {
+                jugadorA = nombreUserSesion;
+                idJugadorA = idUserSesion;
+                idJugadorB = 2002;
+                swal({
+                    text: "Ingresa el nombre de tu invitado",
+                    icon: "https://i.pinimg.com/originals/4c/e6/33/4ce633d76c898adf6a1c372806fc9bda.gif",
+                    content: "input",
+                })
+                    .then((value) => {
+                        jugadorB = value;
+                        enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
+                    });
+
+            } else {
+                jugadorB = nombreUserSesion;
+                idJugadorB = idUserSesion;
+                idJugadorA = 2002;
+                swal({
+                    text: "Ingresa el nombre de tu invitado",
+                    icon: "https://i.pinimg.com/originals/4c/e6/33/4ce633d76c898adf6a1c372806fc9bda.gif",
+                    content: "input",
+                })
+                    .then((value) => {
+                        jugadorA = value;
+                        enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
+                    });
+            }
+        });
+
+}
+function jugadorMaquina() {
+    var nombreUserSesion = localStorage.getItem("usuario");
+    var idUserSesion = localStorage.getItem("idUsuario");
+    var activarMaquina = false;
+    var jugadorA = "";
+    var jugadorB = "";
+    var idJugadorA = -1;
+    var idJugadorB = -1;
+    swal({
+        title: "Escoge tu turno",
+        text: "¿Que ficha deseas usar?",
+        icon: "https://i.gifer.com/origin/14/14b9f4265321c8ed068339bb9708ebc5_w200.gif",
+        buttons: {
+            Si: {
+                text: "Negras",
+                value: "negro"
+            },
+            No: {
+                text: "Blancas",
+                value: "blanco",
+            },
+        },
+        dangerMode: true,
+    })
+        .then((retornado) => {
+            if (retornado == "negro") {
+                jugadorA = nombreUserSesion;
+                jugadorB = "Maquina";
+                idJugadorA = idUserSesion;
+                idJugadorB = 2003;
+                enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
+            } else {
+                jugadorB = nombreUserSesion;
+                jugadorA = "Maquina";
+                idJugadorB = idUserSesion;
+                idJugadorA = 2002;
+                enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
+            }
+        });
+
+}
 function cargarPartida(archivoXML) {
-    alert("Cargado")
-    var url = '/Home/Juego';
+    var nombreUserSesion = localStorage.getItem("usuario");
+    var idUserSesion = localStorage.getItem("idUsuario");
+    var activarMaquina = false;
+    var jugadorA = "";
+    var jugadorB = "";
+    var idJugadorA = -1;
+    var idJugadorB = -1;
+    swal({
+        title: "Jugar contra maquina",
+        text: "¿Deseas Jugar contra una maquina esta partida?",
+        icon: "https://i.gifer.com/origin/14/14b9f4265321c8ed068339bb9708ebc5_w200.gif",
+        buttons: {
+            Si: true,
+            No: {
+                text: "No",
+                value: false,
+            },
+        },
+        dangerMode: false,
+    })
+        .then((retornado) => {
+            if (retornado) {
+                swal({
+                    title: "Escoge tu turno",
+                    text: "¿Que ficha deseas usar?",
+                    icon: "info",
+                    buttons: {
+                        Si: {
+                            text: "Negras",
+                            value: "negro",
+                        },
+                        No: {
+                            text: "Blancas",
+                            value: "blanco",
+                        },
+                    },
+                    dangerMode: true,
+                })
+                    .then((retornado) => {
+                        if (retornado == "negro") {
+                            jugadorA = nombreUserSesion;
+                            jugadorB = "Maquina";
+                            idJugadorA = idUserSesion;
+                            idJugadorB = 2003;
+                            enviar(archivoXML, jugadorA, jugadorB, idJugadorA, idJugadorB);
+                        } else {
+                            jugadorB = nombreUserSesion;
+                            jugadorA = "Maquina";
+                            idJugadorB = idUserSesion;
+                            idJugadorA = 2003;
+                            enviar(archivoXML, jugadorA, jugadorB, idJugadorA, idJugadorB);
+                        }
+                    });
+            } else {
+                swal({
+                    title: "Escoge tu turno",
+                    text: "¿Que ficha deseas usar?",
+                    icon: "info",
+                    buttons: {
+                        Si: {
+                            text: "Negras",
+                            value: "negro",
+                        },
+                        No: {
+                            text: "Blancas",
+                            value: "blanco",
+                        },
+                    },
+                    dangerMode: true,
+                })
+                    .then((retornado) => {
+                        if (retornado == "negro") {
+                            jugadorA = nombreUserSesion;
+                            idJugadorA = idUserSesion;//Cambiar por valores reales
+                            idJugadorB = 2002;
+                            swal("Ingresa el nombre de tu invitado:", {
+                                content: "input",
+                            })
+                                .then((value) => {
+                                    jugadorB = value;
+                                    enviar(archivoXML, jugadorA, jugadorB, idJugadorA, idJugadorB);
+                                });
+                            
+                        } else {
+                            jugadorB = nombreUserSesion;
+                            idJugadorB = idUserSesion;//Cambiar por valores reales
+                            idJugadorA = 2002;
+                            swal("Ingresa el nombre de tu invitado:", {
+                                content: "input",
+                            })
+                                .then((value) => {
+                                    jugadorA = value;
+                                    enviar(archivoXML, jugadorA, jugadorB, idJugadorA, idJugadorB);
+                                });
+                        }
+                    });
+            }
+        });
+    if (activarMaquina) {
+        
+    }
+    /*var url = '/Home/Juego';
     var form = $('<form action="' + url + '" method="post">' +
         '<input style="display: none" type="text" name="archivoXML" value="' + archivoXML + '" />' +
         '</form>');
     $('body').append(form);
-    form.submit();
+    form.submit();*/
 }
+function enviar(archivoXML, jugadorA, jugadorB, idJA, idJB) {
+    var url = '/Home/Juego';
+    
+        var form = $('<form action="' + url + '" method="post">' +
+            '<input style="display: none" type="text" name="archivoXML" value="' + archivoXML + '" />' +
+            '<input style="display: none" type="text" name="jugadorA" value="' + jugadorA + '" />' +
+            '<input style="display: none" type="text" name="jugadorB" value="' + jugadorB + '" />' +
+            '<input style="display: none" type="text" name="idJA" value="' + idJA + '" />' +
+            '<input style="display: none" type="text" name="idJB" value="' + idJB + '" />' +
+            '</form>');
+        $('body').append(form);
+        form.submit();
+}
+
 function guardarPartida() {
     var tablero = "";
     var id;
@@ -78,11 +288,11 @@ function guardarPartida() {
         }
     })
 }
-function zoom(ele) {
+/*function zoom(ele) {
     var id = ele.id;
     let element = document.getElementById(id);
     //Descomentar el if para validar fichas
-/*if (element.className == "btn btn-outline-secondary boton") {*/
+
     if (true) {
         if (turno == 0) {
             element.className = "boton bg-dark"
@@ -123,4 +333,4 @@ function Validate(usuario, clave) {
             document.getElementById('alerta').style.display = 'block';
         }
     })
-}
+}*/
