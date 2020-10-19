@@ -1,0 +1,220 @@
+﻿@model proyectoIPC.Controllers.Juego
+@{
+    ViewData["Title"] = "Jugador vs Jugador";
+    Layout = "~/Views/Shared/MenuUsuario.cshtml";
+}
+<style>
+    .boton {
+        width: 45px;
+        height: 45px;
+        margin: -5px;
+        padding: 0px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        font-size: 11px;
+        line-height: 32px;
+        text-transform: uppercase;
+    }
+
+    .redondo {
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .ctrT {
+        text-align: center;
+    }
+    /*amarillo-azul-anaranjado-violeta-celeste*/
+    .bg-amarillo {
+        background: #F7FE2E;
+    }
+
+    .bg-azul {
+        background: #0101DF;
+    }
+
+    .bg-anaranjado {
+        background: #FF8000;
+    }
+
+    .bg-violeta {
+        background: #BF00FF;
+    }
+
+    .bg-celeste {
+        background: #81F7F3;
+    }
+
+    .bg-blanco {
+        background: #FFFFFF;
+        border-color: #000000;
+    }
+</style>
+
+
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+        <div>
+            <h1>
+                Jugador vs Jugador
+            </h1>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container">
+    
+    <div class="row">
+
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <center>
+                    <h2>
+                        Configuración
+                    </h2>
+                </center>
+                <div class="card-body">
+                    <form action="/Home/Juego" method="post" name="configuration">
+                        <div style="display: none">
+                            <input type="text" name="id" value="@Model.idJugadorA" />
+                            <input type="text" name="user" value="@Model.jugadorA" />
+                            <input type="text" name="invitado" value="@Model.idJugadorB" />
+                        </div>
+                        <div class="form-group">
+                            Nombre del jugador invitado:
+                            <br>
+                            <input type="text" name="name" class="form-control my-input" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            Selecciona tu turno:
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="turno" id="inlineRadio1" value="negro" required>
+                                <label class="form-check-label" for="inlineRadio1">Primer Turno</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="turno" id="inlineRadio2" value="blanco" required>
+                                <label class="form-check-label" for="inlineRadio2">Segundo Turno</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            Selecciona la modalidad:
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipo" id="tipoA" value="Normal" required>
+                                <label class="form-check-label" for="tipoA">Normal</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipo" id="tipoB" value="Inverso" required>
+                                <label class="form-check-label" for="tipoB">Inverso</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            Filas:
+                            <br>
+                            <select class="form-control" name="filas" required>
+                                <option value="6">6</option>
+                                <option value="8">8</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            Columnas:
+                            <br>
+                            <select class="form-control" name="columnas">
+                                <option value="6">6</option>
+                                <option value="8">8</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            Selecciona los colores de tus fichas:
+                            <br>
+                            <table class="table">
+                                <tr class="ctrT">
+                                    <td>Color</td>
+                                    <td>Anfitrion</td>
+                                    <td>Invitado</td>
+
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-danger"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FRojo" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FRojo" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-amarillo"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FAmarillo" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FAmarillo" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-azul"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FAzul" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FAzul" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-anaranjado"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FNaranja" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FNaranja" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-success"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FVerde" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FVerde" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-violeta"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FVioleta" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FVioleta" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-blanco"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FBlanco" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FBlanco" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-dark"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FNegro" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FNegro" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-celeste"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FCeleste" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FCeleste" value="jugadorB"></td>
+                                </tr>
+                                <tr class="ctrT">
+                                    <td><div class="boton btn bg-secondary"></div></td>
+                                    <td><input class="form-check-input" type="radio" name="FGris" value="jugadorA"></td>
+                                    <td><input class="form-check-input" type="radio" name="FGris" value="jugadorB"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="text-center ">
+                            <button type="submit" class="btn btn-primary">Continuar</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

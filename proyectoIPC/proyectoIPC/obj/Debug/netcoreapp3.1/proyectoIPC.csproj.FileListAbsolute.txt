@@ -159,3 +159,4 @@ C:\Users\Willian Huit\Documents\Visual Studio 2019\ProyectoIPC2\ProyectoIPC\proy
 C:\Users\Willian Huit\Documents\Visual Studio 2019\ProyectoIPC2\ProyectoIPC\proyectoIPC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Inicio.cshtml.g.cs
 C:\Users\Willian Huit\Documents\Visual Studio 2019\ProyectoIPC2\ProyectoIPC\proyectoIPC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Juego.cshtml.g.cs
 C:\Users\Willian Huit\Documents\Visual Studio 2019\ProyectoIPC2\ProyectoIPC\proyectoIPC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Juego - Copia.cshtml.g.cs
+C:\Users\Willian Huit\Documents\Visual Studio 2019\ProyectoIPC2\ProyectoIPC\proyectoIPC\obj\Debug\netcoreapp3.1\Razor\Views\Home\FormJugador.cshtml.g.cs

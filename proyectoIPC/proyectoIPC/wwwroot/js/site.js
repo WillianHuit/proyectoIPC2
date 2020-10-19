@@ -21,58 +21,16 @@ document.getElementById('file')
     .addEventListener('change', leerArchivo, false);
 
 function jugadorJugador() {
+    var url = '/Home/FormJugador';
     var nombreUserSesion = localStorage.getItem("usuario");
     var idUserSesion = localStorage.getItem("idUsuario");
-    var jugadorA = "";
-    var jugadorB = "";
-    var idJugadorA = -1;
-    var idJugadorB = -1;
-    swal({
-        title: "Escoge tu turno",
-        text: "¿Que ficha deseas usar?",
-        icon: "https://i.gifer.com/origin/14/14b9f4265321c8ed068339bb9708ebc5_w200.gif",
-        buttons: {
-            Si: {
-                text: "Negras",
-                value: "negro",
-            },
-            No: {
-                text: "Blancas",
-                value: "blanco",
-            },
-        },
-        dangerMode: true,
-    })
-        .then((retornado) => {
-            if (retornado == "negro") {
-                jugadorA = nombreUserSesion;
-                idJugadorA = idUserSesion;
-                idJugadorB = 2002;
-                swal({
-                    text: "Ingresa el nombre de tu invitado",
-                    icon: "https://i.pinimg.com/originals/4c/e6/33/4ce633d76c898adf6a1c372806fc9bda.gif",
-                    content: "input",
-                })
-                    .then((value) => {
-                        jugadorB = value;
-                        enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
-                    });
-
-            } else {
-                jugadorB = nombreUserSesion;
-                idJugadorB = idUserSesion;
-                idJugadorA = 2002;
-                swal({
-                    text: "Ingresa el nombre de tu invitado",
-                    icon: "https://i.pinimg.com/originals/4c/e6/33/4ce633d76c898adf6a1c372806fc9bda.gif",
-                    content: "input",
-                })
-                    .then((value) => {
-                        jugadorA = value;
-                        enviar("noXML",jugadorA, jugadorB, idJugadorA, idJugadorB);
-                    });
-            }
-        });
+    var form = $('<form action="' + url + '" method="post">' +
+        '<input style="display: none" type="text" name="id" value="' + idUserSesion + '" />' +
+        '<input style="display: none" type="text" name="userName" value="' + nombreUserSesion + '" />' +
+        '<input style="display: none" type="text" name="idJugadoB" value="2002" />' +
+        '</form>');
+    $('body').append(form);
+    form.submit();
 
 }
 function jugadorMaquina() {
@@ -260,7 +218,7 @@ function guardarPartida() {
             }
         }
     }
-    alert(tablero)
+    alert("Se guardara")
     var valor = 0
     var record = {
         cadena: tablero,

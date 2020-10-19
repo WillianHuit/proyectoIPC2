@@ -1,131 +1,152 @@
 ﻿@model proyectoIPC.Controllers.Juego
+
 @{
     ViewData["Title"] = "Juego";
     Layout = "~/Views/Shared/MenuUsuario.cshtml";
 }
-    <div class="row">
-        <div class="col-3">
-            <div id="info" style="display: none;">
-                Información<br>
-                <input type="text" name="turno" value="@Model.siguiente" id="turno">
-                <input type="text" name="onlyGame" value="@Model.jugadorIA" id="onlyGame">
-                <input type="text" name="turnoIA" value="@Model.turnoIA" id="turnoIA">
-                <input type="text" name="idJugadorA" id="idJugadorA" value="@Model.idJugadorA">
-                <input type="text" name="idJugadorB" id="idJugadorB" value="@Model.idJugadorB">
 
-            </div>
-            <div id="MostrarJugador">
-                <center>
-                    <h4>Siguiente Ficha:</h4>
-                    <div class="boton bg-success" id="fichaTurno"></div>
-                </center>
-                <br>
-                <br>
 
-            </div>
+
+<div class="row">
+    <div class="col-3">
+        <div id="info" style="display: none;">
+            Configuración<br>
+            Turno
+            <input type="text" name="turno" value="@Model.siguiente" id="turno"><br />
+            Maquina
+            <input type="text" name="onlyGame" value="@Model.jugadorIA" id="onlyGame"><br />
+            Turno Maquina
+            <input type="text" name="turnoIA" value="@Model.turnoIA" id="turnoIA"><br />
+            ID jugadorA
+            <input type="text" name="idJugadorA" id="idJugadorA" value="@Model.idJugadorA"><br />
+            ID jugadoB
+            <input type="text" name="idJugadorB" id="idJugadorB" value="@Model.idJugadorB"><br />
+            Filas
+            <input type="text" name="filaTabla" id="filaTabla" value="@Model.fila" /><br />
+            Columnas
+            <input type="text" name="columnaTabla" id="columnaTabla" value="@Model.columna" /><br />
+            Tipo
+            <input type="text" name="tipo" id="tipo" value="@Model.tipo" /><br />
+            ColorsA
+            <input type="text" name="colorsA" id="colorsA" value="@Model.colorsA" /><br />
+            ColorsB
+            <input type="text" name="colorsB" id="colorsB" value="@Model.colorsB" /><br />
+            TirosInicales
+            <input type="text" name="tiros" id="tiros" value="0" /><br />
         </div>
-        <div class="col-5">
-            <table class="table table-bordered text-center" border="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <th><div class="boton bg-light"></div></th>
-                        <th class="table-warning">A</th>
-                        <th class="table-warning">B</th>
-                        <th class="table-warning">C</th>
-                        <th class="table-warning">D</th>
-                        <th class="table-warning">E</th>
-                        <th class="table-warning">F</th>
-                        <th class="table-warning">G</th>
-                        <th class="table-warning">H</th>
-                        <th><div class="boton bg-light">&nbsp</div></th>
-                    </tr>
-
-                    @{
-                        int contador = 1;
-                        int contador2 = 1;
-                        string id = "";
-                        for (int i = 0; i < 8; i++)
-
-                        {
-                            contador2 = 1;
-                            <tr>
-                                <td class="table-warning"><strong>@contador</strong></td>
-                                @for (int j = 0; j < 8; j++)
-                                {
-                                    id = contador + "" + contador2;
-                                    if (Model.tablero[i, j] == 0)
-                                    {
-                                        <td class="bg-success"><div class="boton bg-success" id="@id" onclick="zoom(this)"></div></td>
-                                    }
-                                    else if (Model.tablero[i, j] == 1)
-                                    {
-                                        <td class="bg-success"><div class="boton bg-dark" id="@id" onclick="zoom(this)"></div></td>
-                                    }
-                                    else if (Model.tablero[i, j] == 2)
-                                    {
-                                        <td class="bg-success"><div class="boton bg-light" id="@id" onclick="zoom(this)"></div></td>
-                                    }
-                                    else
-                                    {
-                                        <td class="bg-success"><div class="btn btn-outline-secondary boton" id="@id" onclick="zoom(this)"></div></td>
-                                    }
-
-                                    contador2++;
-
-                                }
-                                <td class="table-warning"><strong>@contador</strong></td>
-                                @{contador++;
-                                }
-                            </tr>
-                        }
-                    }
-
-                    <tr>
-                        <td></td>
-                        <td class="table-warning"><strong>A</strong></td>
-                        <td class="table-warning"><strong>B</strong></td>
-                        <td class="table-warning"><strong>C</strong></td>
-                        <td class="table-warning"><strong>D</strong></td>
-                        <td class="table-warning"><strong>E</strong></td>
-                        <td class="table-warning"><strong>F</strong></td>
-                        <td class="table-warning"><strong>G</strong></td>
-                        <td class="table-warning"><strong>H</strong></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-1">
+        <div id="MostrarJugador">
+            <center>
+                <h4>Siguiente Ficha:</h4>
+                <div class="boton bg-success" id="fichaTurno"></div>
+            </center>
+            <br>
+            <br>
 
         </div>
-        <div class="col-2">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Jugador</th>
-                        <th scope="col">Ficha</th>
-                        <th scope="col">Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th><label id="JugadorA">@Model.jugadorA</label></th>
-                        <td> <div class="boton bg-dark" id="fichaJugadorA"></div></td>
-                        <th><label id="JugadorACount">55</label></th>
-                    </tr>
-                    <tr>
-                        <th><label id="JugadorB">@Model.jugadorB</label></th>
-                        <td> <div class="boton btn btn-outline-dark" id="fichaJugadorB"></div></td>
-                        <th><label id="JugadorBCount">55</label></th>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-            <button class="btn btn-info" onclick="guardarPartida()">Guardar Partida</button>
+    </div>
+    <div class="col-5">
+        Cronometro:
+    </div>
+    <div class="col-1">
 
+    </div>
+    <div class="col-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Jugador</th>
+                    <th scope="col">Ficha</th>
+                    <th scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><label id="JugadorA">@Model.jugadorA</label></th>
+                    <td> <div class="boton bg-dark" id="fichaJugadorA"></div></td>
+                    <th><label id="JugadorACount">55</label></th>
+                </tr>
+                <tr>
+                    <th><label id="JugadorB">@Model.jugadorB</label></th>
+                    <td> <div class="boton btn btn-outline-dark" id="fichaJugadorB"></div></td>
+                    <th><label id="JugadorBCount">55</label></th>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <button class="btn btn-info" onclick="guardarPartida()">Guardar Partida</button>
 
-        </div>
 
     </div>
 
+</div>
+<div style="text-align:center;">
 
+
+    <table class="tabla">
+        <tr class="ctrT">
+            <td><div class="boton btn bg-light"></div></td>
+            @{
+                for (int i = 0; i < Model.columna; i++)
+                {
+                    <td class="bg-letter">@Model.letras[i]</td>
+                }
+
+            }
+
+            <td><div class="boton btn bg-light">&nbsp</div></td>
+        </tr>
+
+        @{
+            int contador = 1;
+            int contador2 = 1;
+            string id = "";
+            for (int i = 0; i < Model.fila; i++)
+
+            {
+                contador2 = 1;
+                <tr class="ctrT">
+                    <td class="bg-letter"><strong>@contador</strong></td>
+                    @for (int j = 0; j < Model.columna; j++)
+                    {
+                        id = contador + "" + contador2;
+                        if (Model.tablero[i, j] == 0)
+                        {
+                            <td class="bg-fondo"><button class="boton btn bg-fondo" id="@id" onclick="zoom(this)"></button></td>
+                        }
+                        else if (Model.tablero[i, j] == 1)
+                        {
+                            <td class="bg-fondo"><div class="boton btn bg-amarillo" id="@id" onclick="zoom(this)"></div></td>
+                        }
+                        else if (Model.tablero[i, j] == 2)
+                        {
+                            <td class="bg-fondo"><div class="boton btn bg-light" id="@id" onclick="zoom(this)"></div></td>
+                        }
+                        else
+                        {
+                            <td class="bg-fondo"><button name="vacio" class="boton btn bg-disponible" id="@id" onclick="zoom(this)"></button></td>
+                        }
+
+                        contador2++;
+
+                    }
+                    <td class="bg-letter"><strong>@contador</strong></td>
+                    @{contador++;
+                    }
+                </tr>
+            }
+        }
+
+        <tr class="ctrT">
+            <td></td>
+            @{
+                for (int i = 0; i < Model.columna; i++)
+                {
+                    <th class="bg-letter">@Model.letras[i]</th>
+                }
+
+            }
+            <td></td>
+        </tr>
+    </table>
+
+</div>

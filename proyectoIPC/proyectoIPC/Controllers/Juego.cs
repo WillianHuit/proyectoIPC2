@@ -8,8 +8,13 @@ namespace proyectoIPC.Controllers
 {
     public class Juego
     {
+        public string[] letras { get; set; }
+        public string tipo { get; set; }
+        public int fila { get; set; }
+        public int columna { get; set; }
         public int[,] tablero { get; set; }
-
+        public string colorsA { get; set; }
+        public string colorsB { get; set; }
         public string siguiente { get; set; }
         public string jugadorIA { get; set; }
         public string turnoIA { get; set; }
@@ -18,33 +23,17 @@ namespace proyectoIPC.Controllers
         public int idJugadorA { get; set; }
         public int idJugadorB { get; set; }
 
-        public int[,] obtenerTablero()
+        public int[,] obtenerTablero(int filaNew, int columnaNew)
         {
-            int[,] tablero = new int[8, 8];
-            for (int i = 0; i < 8; i++)
+            int[,] tablero = new int[filaNew, columnaNew];
+            for (int i = 0; i < filaNew; i++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < columnaNew; j++)
                 {
                     tablero[i, j] = 0;
                 }
             }
-            int fila, columna, color = 0;
             
-            string cadena = "<tablero><ficha><color>blanco</color><columna>D</columna><fila>4</fila></ficha><ficha><color>negro</color><columna>E</columna><fila>4</fila></ficha><ficha><color>blanco</color><columna>E</columna><fila>5</fila></ficha><ficha><color>negro</color><columna>D</columna><fila>5</fila></ficha><siguienteTiro><color> negro </color></siguienteTiro></tablero>";
-            XmlDocument xml = new XmlDocument();
-            xml.LoadXml(cadena);
-            /*xml.LoadXml("C:/Users/Willian Huit/Desktop/carga.xml");*/
-            XmlNodeList xnList = xml.SelectNodes("/tablero/ficha");
-
-            foreach (XmlNode xn in xnList)
-            {
-                fila = obtenerFila(xn["fila"].InnerText);
-                columna = obtenerColumna(xn["columna"].InnerText);
-                color = obtenerColor(xn["color"].InnerText);
-                if (fila<8 && columna<8) {
-                    tablero[fila, columna] = color;
-                }
-            }
             return tablero;
         }
         public int[,] tableroReglas() {
